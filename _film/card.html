@@ -1,0 +1,45 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>card</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Inter:wght@400;500;600;650&family=JetBrains+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="/site.css">
+<style>
+html,body{height:100%;margin:0}
+body{display:grid;place-items:center;background:var(--bg);overflow:hidden}
+.c{width:min(1180px,90vw);display:grid;gap:26px}
+.c h1{font-size:76px}
+.c .lede{font-size:26px;max-width:none}
+.in{opacity:0;transform:translateY(16px);animation:in .7s ease forwards}
+@keyframes in{to{opacity:1;transform:none}}
+.chips{position:absolute;inset:0;pointer-events:none}
+.chip{position:absolute;padding:10px 16px;border-radius:999px;background:var(--panel);border:1px solid var(--line);font:500 18px/1 var(--body);color:var(--muted);box-shadow:0 10px 30px -18px #0004;opacity:0;animation:in .6s ease forwards}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.col{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:28px;display:grid;gap:10px}
+.col .tag{font:600 15px/1 var(--mono);color:var(--accent)}
+.col h3{font-size:28px}
+.col p{margin:0;color:var(--ink-2);font-size:19px}
+.layers{gap:14px}.layer{font-size:22px;padding:20px 26px}.layer small{font-size:17px}
+.end{justify-items:center;text-align:center}
+.end .logo{font-size:64px;gap:20px}.end .logo i{width:40px;height:40px;box-shadow:0 0 0 12px var(--accent-soft)}.end .logo i::after{inset:10px}
+</style></head><body><div id="root"></div>
+<script>
+const k=new URLSearchParams(location.search).get("k"),R=document.getElementById("root");
+const d=(i)=>`style="animation-delay:${i}s"`;
+if(k==="problem"){
+  const chips=[["42 tabs open",8,14],["Slack thread",70,10],["Notion doc",14,78],["Zoom call",76,74],["GitHub PR",4,46],["YouTube talk",82,40],["ChatGPT chat",30,8],["PDF paper",58,86],["Calendar",44,84],["Google Search",88,20]];
+  R.innerHTML=`<div class="chips">${chips.map((c,i)=>`<span class="chip" style="left:${c[1]}%;top:${c[2]}%;animation-delay:${.3+i*.35}s">${c[0]}</span>`).join("")}</div>
+  <div class="c"><p class="eyebrow in">The problem</p><h1 class="in" ${d(.4)}>Your growth is invisible.<br><em>Even to you.</em></h1></div>`;
+}else if(k==="how"){
+  R.innerHTML=`<div class="c"><p class="eyebrow in">Magic</p><h1 class="in" ${d(.2)} style="font-size:64px">A private AI that learns who you are<br>from <em>everything you do</em>.</h1>
+  <div class="cols"><div class="col in" ${d(1.4)}><span class="tag">01 · RECORD</span><h3>Everything, on your laptop</h3><p>Reading, building, calls. Nothing to log.</p></div>
+  <div class="col in" ${d(4)}><span class="tag">02 · UNDERSTAND</span><h3>Local AI finds the evidence</h3><p>Skills, habits, personality, depth.</p></div>
+  <div class="col in" ${d(7.5)}><span class="tag">03 · GUIDE</span><h3>Where you stand, what's next</h3><p>A path, and mentors for each stage.</p></div></div></div>`;
+}else if(k==="vision"){
+  R.innerHTML=`<div class="c"><p class="eyebrow in">The vision</p><h1 class="in" ${d(.2)} style="font-size:64px">The personal context layer<br>for a <em>lifetime</em>.</h1>
+  <div class="layers">
+  <div class="layer in" ${d(6.5)}><span>Agents, coaches, learning and hiring apps</span><small>ask with permission</small></div>
+  <div class="layer in" ${d(3.6)}><span>Guidance: next step, mentors, path</span><small>today</small></div>
+  <div class="layer in" ${d(2.6)}><span>Understanding: skills, behaviour, personality</span><small>today</small></div>
+  <div class="layer core in" ${d(1.6)}><span>Your private record of everything you do</span><small>on your device</small></div></div></div>`;
+}else{
+  R.innerHTML=`<div class="c end"><a class="logo in"><i></i>Magic</a><p class="lede in" ${d(.6)} style="font-size:34px;font-family:var(--display);font-weight:600;color:var(--ink)">See how you grow.</p><p class="in muted" ${d(1.4)} style="font-size:20px">Step inside the live demo · built by Pallavi Singla</p></div>`;
+}
+</script></body></html>

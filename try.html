@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Try Magic · Live demo</title>
+<link rel="icon" href="/media/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Inter:wght@400;500;600;650&family=JetBrains+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="logo" href="/"><i aria-hidden="true"></i>Magic</a>
+    <div class="nav-links"><a href="/#film">Watch the demo</a><a href="/about">Founder</a></div>
+  </div>
+</nav>
+<section>
+  <div class="wrap split">
+    <div class="sec-head" style="margin:0">
+      <p class="eyebrow" id="t-eyebrow">Live demo</p>
+      <h1 id="t-title" style="font-size:clamp(36px,5vw,58px)">Step inside a real Magic.</h1>
+      <p class="lede" id="t-lede">Sign up and you'll land in the founder's own Magic: three weeks of real reading, building and calls, analysed on her laptop. Click anything. Every chart explains itself.</p>
+      <ul class="ticks" id="t-ticks">
+        <li>Her personality, blind spots and when she learns best</li>
+        <li>21 topics, each levelled from Novice to Expert against a goal</li>
+        <li>Every idea, with how and when she learned it</li>
+        <li>Her path forward and mentors for each stage</li>
+      </ul>
+    </div>
+    <form class="form-card" id="f" novalidate>
+      <h3 id="f-title">Create your demo pass</h3>
+      <div class="field"><label for="name">Your name</label><input id="name" name="name" autocomplete="name" required></div>
+      <div class="field"><label for="email">Work email</label><input id="email" name="email" type="email" autocomplete="email" required><small>We'll only use it to send you your own Magic when it's ready.</small></div>
+      <div class="field"><label for="goal">What do you want to get better at? <span class="muted">(optional)</span></label><textarea id="goal" name="goal" placeholder="e.g. become a staff engineer, learn AI product, run my first marathon"></textarea></div>
+      <p class="form-err" id="err" hidden></p>
+      <button class="btn btn-primary" id="go" type="submit">Enter the live demo</button>
+      <p class="muted" style="margin:0;font-size:13.5px">Free. No install. Takes ten seconds.</p>
+    </form>
+  </div>
+</section>
+<script>
+(() => {
+  const q = new URLSearchParams(location.search);
+  const own = q.has("own");
+  let saved = null;
+  try { saved = JSON.parse(localStorage.getItem("magic-demo-user") || "null"); } catch (_) {}
+  const $ = (id) => document.getElementById(id);
+  if (own) {
+    $("t-eyebrow").textContent = "Your own Magic";
+    $("t-title").textContent = "Get a Magic of your own.";
+    $("t-lede").textContent = "Magic is in private beta on Mac. We're inviting people in small groups so every profile gets real attention. Join the list and tell us what you're working toward.";
+    $("t-ticks").innerHTML = "<li>Runs on your own laptop. Your data never leaves it</li><li>Your first picture of yourself within a week of normal work</li><li>Pause, exclude or delete anything, anytime</li>";
+    $("f-title").textContent = "Join the early-access list";
+    $("go").textContent = saved ? "Add me to the list" : "Join the list";
+    if (saved) { $("name").value = saved.name || ""; $("email").value = saved.email || ""; }
+  }
+  $("f").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const name = $("name").value.trim(), email = $("email").value.trim(), goal = $("goal").value.trim();
+    const err = $("err");
+    if (!name) { err.textContent = "Add your name so we know who's exploring."; err.hidden = false; $("name").focus(); return; }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { err.textContent = "That email doesn't look right. Check it and try again."; err.hidden = false; $("email").focus(); return; }
+    err.hidden = true; $("go").disabled = true; $("go").textContent = own ? "Adding you…" : "Opening the demo…";
+    try {
+      await fetch("/api/signup", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ name, email, goal, kind: own ? "own" : "demo", ref: document.referrer || "" }) });
+    } catch (_) { /* the demo still opens if saving the sign-up fails */ }
+    try { localStorage.setItem("magic-demo-user", JSON.stringify({ name, email, at: Date.now() })); } catch (_) {}
+    if (own) {
+      $("f").innerHTML = `<h3>You're on the list, ${name.split(" ")[0].replace(/[<>&]/g, "")}.</h3><p class="muted" style="margin:0">We'll email ${email.replace(/[<>&]/g, "")} when your spot opens. Meanwhile, the founder's own Magic is open to explore.</p><a class="btn btn-primary" href="/demo/#/me">Explore the live demo</a>`;
+    } else {
+      location.href = "/demo/#/me";
+    }
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Magic · Live demo</title>
+<link rel="icon" href="/media/favicon.svg">
+<link rel="stylesheet" href="app.css">
+<link rel="stylesheet" href="you.css">
+<style>
+  a.navlink.settings { display: none; }
+  body { padding-top: 44px; }
+  .demo-bar { position: fixed; z-index: 60; top: 0; left: 0; right: 0; min-height: 44px; display: flex; gap: 12px; align-items: center; justify-content: space-between; padding: 6px 16px; background: var(--accent); color: #fff; font: 13px/1.4 Inter, system-ui, sans-serif; }
+  .demo-bar b { font-weight: 650; }
+  .demo-bar-links { display: flex; gap: 14px; align-items: center; flex-shrink: 0; }
+  .demo-bar a { color: #fff; text-decoration: none; opacity: .9; }
+  .demo-bar a:hover { opacity: 1; text-decoration: underline; }
+  .demo-bar .demo-bar-cta { background: var(--lime); color: #1d2a00; padding: 6px 12px; border-radius: 999px; font-weight: 650; opacity: 1; }
+  @media (prefers-color-scheme: dark) { .demo-bar { color: #160b2b; } .demo-bar a { color: #160b2b; } }
+  @media (max-width: 700px) { .demo-bar > span:first-child { font-size: 12.5px; } .demo-bar-links a:not(.demo-bar-cta) { display: none; } body { padding-top: 64px; } }
+  @media (min-width: 701px) { .left, .right { top: 44px !important; height: calc(100vh - 44px) !important; } }
+</style>
+</head>
+<body>
+  <aside class="left">
+    <div class="brand"><span class="rec on" id="rec"></span> Magic</div>
+    <a class="navlink" href="#/me" data-nav="me">You</a>
+    <div class="section-label">Knowledge</div>
+    <nav id="tree"></nav>
+    <a class="navlink settings" href="#/activity" data-nav="record">Your record</a>
+  </aside>
+  <main id="main"></main>
+  <aside class="right" id="right"></aside>
+  <script src="demo-data.js"></script>
+  <script src="demo-shim.js"></script>
+  <script src="vendor/marked.min.js"></script>
+  <script src="vendor/mermaid.min.js"></script>
+  <script src="vendor/d3.v7.9.0.min.js"></script>
+  <script src="vendor/plot.v0.6.16.umd.min.js"></script>
+  <script src="charts.js"></script>
+  <script src="charts-you.js"></script>
+  <script src="dev-charts.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
