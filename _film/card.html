@@ -32,6 +32,9 @@ if(k==="problem"){
   <div class="cols"><div class="col in" ${d(1.4)}><span class="tag">01 · RECORD</span><h3>Everything, on your laptop</h3><p>Reading, building, calls. Nothing to log.</p></div>
   <div class="col in" ${d(4)}><span class="tag">02 · UNDERSTAND</span><h3>Local AI finds the evidence</h3><p>Skills, habits, personality, depth.</p></div>
   <div class="col in" ${d(7.5)}><span class="tag">03 · GUIDE</span><h3>Where you stand, what's next</h3><p>A path, and mentors for each stage.</p></div></div></div>`;
+}else if(k==="chapter"){
+  const q=new URLSearchParams(location.search);
+  R.innerHTML=`<div class="c"><p class="eyebrow in" style="font-size:18px">${q.get("n")}</p><h1 class="in" ${d(.25)} style="font-size:96px">${q.get("t")}</h1><p class="lede in" ${d(.6)}>${q.get("s")||""}</p></div>`;
 }else if(k==="vision"){
   R.innerHTML=`<div class="c"><p class="eyebrow in">The vision</p><h1 class="in" ${d(.2)} style="font-size:64px">The personal context layer<br>for a <em>lifetime</em>.</h1>
   <div class="layers">
