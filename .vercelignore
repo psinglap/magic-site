@@ -1,2 +1,5 @@
 _film
 node_modules
+.env*
+.admin-key
+.git

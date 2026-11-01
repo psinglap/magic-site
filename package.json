@@ -1,5 +1,5 @@
 {
   "name": "magic-site",
   "private": true,
-  "dependencies": { "@vercel/blob": "0.27.3" }
+  "dependencies": { "@vercel/blob": "2.8.2" }
 }
