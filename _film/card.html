@@ -24,9 +24,9 @@ body{display:grid;place-items:center;background:var(--bg);overflow:hidden}
 const k=new URLSearchParams(location.search).get("k"),R=document.getElementById("root");
 const d=(i)=>`style="animation-delay:${i}s"`;
 if(k==="problem"){
-  const chips=[["42 tabs open",8,14],["Slack thread",70,10],["Notion doc",14,78],["Zoom call",76,74],["GitHub PR",4,46],["YouTube talk",82,40],["ChatGPT chat",30,8],["PDF paper",58,86],["Calendar",44,84],["Google Search",88,20]];
+  const chips=[["42 tabs open",8,14],["Slack thread",70,10],["Notion doc",14,78],["Zoom call",76,74],["GitHub PR",4,46],["YouTube talk",82,40],["AI agent: task done",30,8],["PDF paper",58,86],["12 notifications",44,84],["Google Search",88,20]];
   R.innerHTML=`<div class="chips">${chips.map((c,i)=>`<span class="chip" style="left:${c[1]}%;top:${c[2]}%;animation-delay:${.3+i*.35}s">${c[0]}</span>`).join("")}</div>
-  <div class="c"><p class="eyebrow in">The problem</p><h1 class="in" ${d(.4)}>Your growth is invisible.<br><em>Even to you.</em></h1></div>`;
+  <div class="c"><p class="eyebrow in">The problem</p><h1 class="in" ${d(.4)} style="font-size:68px">Where is my time going?<br>What am I learning?<br><em>How do I grow?</em></h1></div>`;
 }else if(k==="how"){
   R.innerHTML=`<div class="c"><p class="eyebrow in">Magic</p><h1 class="in" ${d(.2)} style="font-size:64px">A private AI that learns who you are<br>from <em>everything you do</em>.</h1>
   <div class="cols"><div class="col in" ${d(1.4)}><span class="tag">01 · RECORD</span><h3>Everything, on your laptop</h3><p>Reading, building, calls. Nothing to log.</p></div>

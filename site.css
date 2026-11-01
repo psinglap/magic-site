@@ -235,3 +235,23 @@ footer a { color: var(--muted); }
 .pnum { font: 600 13px/1 var(--mono); color: var(--accent); }
 .sec-head h2 + .lede { margin: 4px 0 0; }
 .sec-head { gap: 18px; }
+
+/* Built today: the context-layer stack, shown under the hero */
+.built { width: 100%; margin-top: 18px; border: 1px solid var(--line); border-radius: 20px; background: var(--panel); padding: 20px; display: grid; gap: 14px; }
+.built-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; font-size: 15.5px; }
+.built-head .muted { font-size: 14.5px; }
+.live-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 0 4px var(--lime-soft); animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse { 50% { box-shadow: 0 0 0 7px var(--lime-soft); } }
+.built-stack { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+@media (max-width: 900px) { .built-stack { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .built-stack { grid-template-columns: 1fr; } }
+.bl { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px; align-items: start; padding: 14px 14px 14px 12px; border-radius: 14px; background: var(--accent-soft); }
+.bl > div { display: grid; gap: 2px; font-size: 15px; padding-right: 36px; }
+.bl > div span { color: var(--ink-2); font-size: 14px; line-height: 1.45; }
+.bl-n { font: 600 12.5px/22px var(--mono); width: 22px; height: 22px; border-radius: 7px; text-align: center; background: var(--accent); color: #fff; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .bl-n { color: #160b2b; } }
+:root[data-theme="dark"] .bl-n { color: #160b2b; }
+.bl em { position: absolute; top: 12px; right: 12px; font: 600 11.5px/1 var(--body); font-style: normal; padding: 4px 7px; border-radius: 999px; }
+.tag-live { background: var(--lime); color: #1d2a00; }
+.tag-next { background: transparent; color: var(--muted); border: 1px dashed var(--muted); }
+.bl-next { background: transparent; border: 1px dashed var(--line); }
