@@ -2,7 +2,6 @@
 (function () {
   let user = null;
   try { user = JSON.parse(localStorage.getItem("magic-demo-user") || "null"); } catch (_) {}
-  if (!user && !/[?&]open\b/.test(location.search)) { location.replace("/try?next=demo"); return; }
   window.__DEMO_USER = user;
   const real = window.fetch.bind(window);
   const reply = (status, body) => Promise.resolve(new Response(JSON.stringify(body), { status, headers: { "content-type": "application/json" } }));
@@ -23,7 +22,7 @@
     const bar = document.createElement("div");
     bar.className = "demo-bar";
     bar.innerHTML = `<span><b>${first ? first + ", you're" : "You're"} inside the founder's real Magic.</b> Three weeks of Pallavi's own reading, building and calls, analysed on her laptop.</span>
-      <span class="demo-bar-links"><a href="/">About Magic</a><a class="demo-bar-cta" href="/try?own=1">Get your own Magic</a></span>`;
+      <span class="demo-bar-links"><a href="/">About Magic</a><a class="demo-bar-cta" href="/try">Get your own Magic</a></span>`;
     document.body.prepend(bar);
   });
 })();

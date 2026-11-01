@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Try Magic · Live demo</title>
+<title>Get your own Magic</title>
 <link rel="icon" href="/media/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +14,7 @@
 <nav class="nav" aria-label="Main">
   <div class="wrap">
     <a class="logo" href="/"><i aria-hidden="true"></i>Magic</a>
-    <div class="nav-links"><a href="/#film">Watch the demo</a><a href="/about">Founder</a></div>
+    <div class="nav-links"><a href="/#film">Watch the demo</a><a href="/about">Founder</a><a class="btn btn-primary" href="/demo/">Try the live demo</a></div>
   </div>
 </nav>
 <section>
@@ -33,18 +33,18 @@
     <form class="form-card" id="f" novalidate>
       <h3 id="f-title">Create your demo pass</h3>
       <div class="field"><label for="name">Your name</label><input id="name" name="name" autocomplete="name" required></div>
-      <div class="field"><label for="email">Work email</label><input id="email" name="email" type="email" autocomplete="email" required><small>We'll only use it to send you your own Magic when it's ready.</small></div>
+      <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required><small>We'll only use it to invite you when your spot opens.</small></div>
       <div class="field"><label for="goal">What do you want to get better at? <span class="muted">(optional)</span></label><textarea id="goal" name="goal" placeholder="e.g. become a staff engineer, learn AI product, run my first marathon"></textarea></div>
       <p class="form-err" id="err" hidden></p>
       <button class="btn btn-primary" id="go" type="submit">Enter the live demo</button>
-      <p class="muted" style="margin:0;font-size:13.5px">Free. No install. Takes ten seconds.</p>
+      <p class="muted" style="margin:0;font-size:13.5px">Want to look around first? <a href="/demo/">Explore the live demo</a>, no sign-up needed.</p>
     </form>
   </div>
 </section>
 <script>
 (() => {
   const q = new URLSearchParams(location.search);
-  const own = q.has("own");
+  const own = true;
   let saved = null;
   try { saved = JSON.parse(localStorage.getItem("magic-demo-user") || "null"); } catch (_) {}
   const $ = (id) => document.getElementById(id);

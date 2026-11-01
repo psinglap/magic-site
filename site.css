@@ -179,3 +179,5 @@ footer a { color: var(--muted); }
 .prose p { margin: 0; color: var(--ink-2); font-size: 18px; }
 .portrait > * { grid-area: 1 / 1; }
 .portrait img { position: relative; z-index: 1; }
+.timeline li.exit::before { background: var(--lime); box-shadow: 0 0 0 4px var(--bg), 0 0 0 6px var(--lime); }
+.timeline li.exit .when { color: var(--lime-ink); background: var(--lime-soft); justify-self: start; padding: 2px 8px; border-radius: 6px; }
